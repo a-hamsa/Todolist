@@ -30,3 +30,44 @@ exports.createList = (req, res) => {
         return res.status(200).json(result);
     });
 }
+
+//SHOW LIST
+exports.showTodos = (req, res) => {
+    const q = "SELECT * FROM todos";
+
+    db.query(q, (err, result) => {
+        if (err) return res.json(err);
+        return res.status(200).json(result);
+    });
+}
+
+//SHOW SINGLE TODO
+exports.singleTodo = (req, res) => {
+    const q = `SELECT * FROM todos where id=${req.params.id}`;
+    db.query(q, (err, result) => {
+        if (err) return res.json(err);
+        return res.status(200).json(result[0]);
+    });
+}
+
+//UPDATE TODO
+exports.updateTodo = (req, res) => {
+    const { firstName, lastName } = req.body;
+
+    const q = `UPDATE todos SET ? where id=${req.params.id}`;
+
+    db.query(q, {firstName, lastName}, (err, result) => {
+        if (err) return res.json(err);
+        return res.status(200).json(result);
+    });
+}
+
+//DELETE SINGLE TODO
+exports.deleteSingleTodo = (req, res) => {
+    const q =`DELETE FROM todos WHERE id=${req.params.id}`;
+
+    db.query(q, (err, result) => {
+        if (err) return res.json(err);
+        return res.status(200).json({ data: "todo deleted"});
+    });
+}
