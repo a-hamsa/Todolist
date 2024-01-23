@@ -8,6 +8,7 @@ router.get('/create/table', createTable);
 router.post('/create/list', createList);
 router.get('/show/todos', showTodos);
 router.get('/todo/:id', singleTodo);
-router.get('/delete/todo/:id', deleteSingleTodo);
+router.delete('/delete/todo/:id', deleteSingleTodo);
+router.put('/update/todo/:id', updateTodo);
 
 module.exports = router;

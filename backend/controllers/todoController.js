@@ -23,9 +23,9 @@ exports.createTable = (req, res) => {
 exports.createList = (req, res) => {
     const q = "INSERT INTO todos SET ?";
 
-    const { firstName, lastName } = req.body;
+    const { firstname, lastname } = req.body;
 
-    db.query(q, {firstName, lastName}, (err, result) => {
+    db.query(q, {firstname, lastname}, (err, result) => {
         if (err) return res.json(err);
         return res.status(200).json(result);
     });
@@ -52,11 +52,11 @@ exports.singleTodo = (req, res) => {
 
 //UPDATE TODO
 exports.updateTodo = (req, res) => {
-    const { firstName, lastName } = req.body;
+    const { firstname, lastname } = req.body;
 
     const q = `UPDATE todos SET ? where id=${req.params.id}`;
 
-    db.query(q, {firstName, lastName}, (err, result) => {
+    db.query(q, {firstname, lastname}, (err, result) => {
         if (err) return res.json(err);
         return res.status(200).json(result);
     });
